@@ -1,0 +1,296 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+
+<div class="container mt-3">
+	<div class="card m-3">
+		<h3 class="card-header">Healthcare.gov Eligibility Checker </h3>
+		<div class="card-body">
+			<h3> Did your previous employer provide health insurance?</h3>
+			<div class="form-row">
+				<div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+					<div class="btn-group mr-5" role="group" aria-label="First group">
+						<button type="button" class="btn btn-info" (click)=toggleCobraSuccess(value)> Yes, they did </button>
+					</div>
+					<div class="btn-group" role="group" aria-label="First group">
+						<button type="button" class="btn btn-info" value = "cobraFailButton" (click)=toggleCobraFail()> No, they did not </button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<hr />
+		<div class="card-body" [hidden]="cobraSuccessDiv">
+			<h3>You can keep your old insurance but you'll need to pay for it.</h3>
+
+			<p>You should be eligble to continue paying for your old insurance plan through something called COBRA.
+				Look
+				out though; keeping your insurance through COBRA tends to be expensive for most people. Learn more
+				here.
+			</p>
+
+			<p>You also could be eligible for insurance through public markets. Would you like to explore if you'd
+				be eligible there? </p>
+
+			<div class="form-row">
+				<div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+					<div class="btn-group mr-5" role="group" aria-label="First group">
+						<button type="button" class="btn btn-info" (click)=toggleHCChecker()> Yes, I would </button>
+					</div>
+					<div class="btn-group" role="group" aria-label="First group">
+						<button type="button" class="btn btn-info" (click)=toggleResetThanks()> No, I would not </button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="card-body" [hidden]="cobraFailDiv">
+			<h3>You may not be able to keep your old insurance, but you could be eligible for other coverage.</h3>
+
+			<p>You could be eligible for insurance through public markets. Would you like to explore if you'd
+				be eligible there? </p>
+
+			<div class="form-row">
+				<div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+					<div class="btn-group mr-5" role="group" aria-label="First group">
+						<button type="button" class="btn btn-info" (click)=toggleHCChecker()> Yes, I would </button>
+					</div>
+					<div class="btn-group" role="group" aria-label="First group">
+						<button type="button" class="btn btn-info" (click)=toggleResetThanks()> No, I would not </button>
+					</div>
+				</div>
+			</div>
+			<hr />
+		</div>
+
+
+		<div class="card-body" [hidden]="hcCheckerDiv">
+			<h3>Let's see what you'll be eligible for.</h3>
+			<p> </p>
+			<h5>In the past 60 days did you...</h5>
+			<p> </p>
+			<p> </p>
+			<p>Lose your health coverage?</p>
+			<div class="form-row">
+				<div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+					<div class="btn-group mr-5" role="group" aria-label="First group">
+						<button type="button" class="btn btn-info" (click)=toggleYesCoverage()> Yes </button>
+					</div>
+					<div class="btn-group" role="group" aria-label="First group">
+						<button type="button" class="btn btn-info" (click)=toggleNoCoverage()> No</button>
+					</div>
+				</div>
+			</div>
+			<p> </p>
+			<hr />
+			<p> </p>
+			<p>Get married?</p>
+			<div class="form-row">
+				<div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+					<div class="btn-group mr-5" role="group" aria-label="First group">
+						<button type="button" class="btn btn-info" (click)=toggleYesMarried()> Yes </button>
+					</div>
+					<div class="btn-group" role="group" aria-label="First group">
+						<button type="button" class="btn btn-info" (click)=toggleNoMarried()> No</button>
+					</div>
+				</div>
+			</div>
+			<p> </p>
+			<hr />
+			<p> </p>
+			<p>Have a baby?</p>
+			<div class="form-row">
+				<div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+					<div class="btn-group mr-5" role="group" aria-label="First group">
+						<button type="button" class="btn btn-info" (click)=toggleYesBaby()> Yes </button>
+					</div>
+					<div class="btn-group" role="group" aria-label="First group">
+						<button type="button" class="btn btn-info" (click)=toggleNoBaby()> No</button>
+					</div>
+				</div>
+			</div>
+			<p> </p>
+			<hr />
+			<p> </p>
+			<p>Get divorced or legally sperated and lost health insurance?</p>
+			<div class="form-row">
+				<div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+					<div class="btn-group mr-5" role="group" aria-label="First group">
+						<button type="button" class="btn btn-info" (click)=toggleYesDivorce()> Yes </button>
+					</div>
+					<div class="btn-group" role="group" aria-label="First group">
+						<button type="button" class="btn btn-info" (click)=toggleNoDivorce()> No</button>
+					</div>
+				</div>
+			</div>
+			<p> </p>
+			<hr />
+			<p> </p>
+			<p>Changed your primary place of living?</p>
+			<div class="form-row">
+				<div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+					<div class="btn-group mr-5" role="group" aria-label="First group">
+						<button type="button" class="btn btn-info" (click)=toggleYesMoved()> Yes </button>
+					</div>
+					<div class="btn-group" role="group" aria-label="First group">
+						<button type="button" class="btn btn-info" (click)=toggleNoMoved()> No</button>
+					</div>
+				</div>
+			</div>
+			<p> </p>
+			<hr />
+			<p> </p>
+			<p>Denied Medicaid or CHIP?</p>
+			<div class="form-row">
+				<div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+					<div class="btn-group mr-5" role="group" aria-label="First group">
+						<button type="button" class="btn btn-info" (click)=toggleYesDenied()> Yes </button>
+					</div>
+					<div class="btn-group" role="group" aria-label="First group">
+						<button type="button" class="btn btn-info" (click)=toggleNoDenied()> No</button>
+					</div>
+				</div>
+			</div>
+			<p> </p>
+			<hr />
+			<p> </p>
+			<p>Gain a dependent?</p>
+			<div class="form-row">
+				<div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+					<div class="btn-group mr-5" role="group" aria-label="First group">
+						<button type="button" class="btn btn-info" (click)=toggleYesDependent()> Yes </button>
+					</div>
+					<div class="btn-group" role="group" aria-label="First group">
+						<button type="button" class="btn btn-info" (click)=toggleNoDependent()> No</button>
+					</div>
+				</div>
+			</div>
+			<p> </p>
+			<hr />
+			<p> </p>
+			<p>Gained citizenship or lawful presence in the U.S.?</p>
+			<div class="form-row">
+				<div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+					<div class="btn-group mr-5" role="group" aria-label="First group">
+						<button type="button" class="btn btn-info" (click)=toggleYesCitizen()> Yes </button>
+					</div>
+					<div class="btn-group" role="group" aria-label="First group">
+						<button type="button" class="btn btn-info" (click)=toggleNoCitizen()> No</button>
+					</div>
+				</div>
+			</div>
+			<p> </p>
+			<hr />
+			<p> </p>
+			<p>Released from incarceration (detention, jail, or prison)?</p>
+			<div class="form-row">
+				<div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+					<div class="btn-group mr-5" role="group" aria-label="First group">
+						<button type="button" class="btn btn-info" (click)=toggleYesRelease()> Yes </button>
+					</div>
+					<div class="btn-group" role="group" aria-label="First group">
+						<button type="button" class="btn btn-info" (click)=toggleNoRelease()> No</button>
+					</div>
+				</div>
+			</div>
+			<p> </p>
+			<p> </p>
+			<hr />
+			<hr />
+			<h5>In the past 60 days did someone in your household...</h5>
+			<p> </p>
+			<p> </p>
+			<p>Pass away while being on your insurance plan?</p>
+			<div class="form-row">
+				<div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+					<div class="btn-group mr-5" role="group" aria-label="First group">
+						<button type="button" class="btn btn-info" (click)=toggleYesPassed()> Yes </button>
+					</div>
+					<div class="btn-group" role="group" aria-label="First group">
+						<button type="button" class="btn btn-info" (click)=toggleNoPassed()> No</button>
+					</div>
+				</div>
+			</div>
+			<hr />
+		</div>
+
+		<div class="card-body" [hidden]="isSuccessDiv">
+			<h2>You could be eligible for coverage at Healthcare.gov</h2>
+			<p> If all the information you inputted is accurate you could be eligible for coverage under the
+				Affordable Care Act. While we take painstaking measures to ensure the accuracy of this tool, we
+				could have made mistakes. Please check your eligbility at <a href="https://www.healthcare.gov/"
+					target="_blank"> Healthcare.gov </a> when you go there to sign
+				up.</p>
+
+			<p>If you are also found eligble at Healthcare.gov you will may be required to provide certain
+				documentation. Learn about what you'll need to provide here.</p>
+		</div>
+
+		<div class="card-body" [hidden]="isFailureDiv">
+			<h2>You may not be eligible for coverage at Healthcare.gov</h2>
+			<p> If all the information you inputted is accurate you may not be eligible for coverage under the
+				Affordable Care Act. While we take painstaking measures to ensure the accuracy of this tool, we
+				could have made mistakes. Please check your double check your eligbility at <a
+					href="https://www.healthcare.gov/" target="_blank"> Healthcare.gov </a></p>
+
+			<p> We are currently developing a tool help assess your eligibility for other public insurance programs. In
+				the meantime, explore other exchanges, Medicare, Medicaid, and CHIP options in your state.</p>
+			<!--
+			<p>However, you may be eligible for coverage through your state. If you live in Texas, you can use our
+				tool to assess your eligbility for Medicaid.</p>
+
+			<p>Would you like to use our Texas Medicaid elibility checker?</p>
+			
+      <div class="form-row">
+				<div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+					<div class="btn-group mr-5" role="group" aria-label="First group">
+						<button type="button" class="btn btn-info" (click)=toggleYesMedicare()> Yes </button>
+					</div>
+					<div class="btn-group" role="group" aria-label="First group">
+						<button type="button" class="btn btn-info" (click)=toggleNoMedicare()> No</button>
+					</div>
+				</div>
+			</div>
+      -->
+			<hr />
+		</div>
+
+		<div class="card-body" [hidden]="medicareDiv">
+			<h3>Let's see what you could be eligible for</h3>
+			<p> </p>
+			<p> </p>
+			<p>Our tool isn't complete yet, but we can provide you with information to help you assess your own
+				eligibilty. </p>
+			<p> Do you receive Supplemental Social Income (SSI) from the Social Security administration?</p>
+			<div class="form-row">
+				<div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+					<div class="btn-group mr-5" role="group" aria-label="First group">
+						<button type="button" class="btn btn-info" (click)=toggleYesSSI()> Yes </button>
+					</div>
+					<div class="btn-group" role="group" aria-label="First group">
+						<button type="button" class="btn btn-info" (click)=toggleNoSSI()> No</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="card-body" [hidden]="isSSIDiv">
+		</div>
+
+		<div class="card-body" [hidden]="isnotSSIDiv">
+		</div>
+
+		<div class="card-body" [hidden]="thanksDiv">
+			<h3> Thanks for using our Eligibilty Checker!</h3>
+			<h5>Contact us at <a href="mailto:info@renovumhealth.com" target="_blank"> info@renovumhealth.com </a> </h5>
+		</div>
+
+		<div class="card-footer text-center">
+			<button class="btn btn-primary mr-1" type="reset" (click)="onReset()">Reset</button>
+		</div>
+	</div>
+</div>
+
+<!-- credits -->
+<div class="text-center">
+	<p>
+		&copy; 2020 Renovum Health
+	</p>
+</div>
